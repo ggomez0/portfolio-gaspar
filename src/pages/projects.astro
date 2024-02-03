@@ -1,24 +1,27 @@
 ---
 import ProjectCard from '../components/ProjectCard.astro';
 import Layout from '../layouts/Layout.astro';
+
+//API Github
+const username = "ggomez0"; // GitHub username
+const apiUrl = `https://api.github.com/users/${username}/repos`;
+const response = await fetch(apiUrl);
+const datas = await response.json();
 ---
 <Layout>
     <div class="justify-center flex gap-4 flex-wrap">
-
-    <ProjectCard href='https://dolar-ggomez0.vercel.app' title='A cuanto esta?' 
-    descripcion='Pagina que recupera los datos de los diferentes tipos de cambio en Argentina y los muestra' image='/public/dolarpro.webp'>        
-    </ProjectCard>
-    <ProjectCard href='https://dolar-ggomez0.vercel.app' title='A cuanto esta?' 
-    descripcion='Pagina que recupera los datos de los diferentes tipos de cambio en Argentina y los muestra' image='/public/dolarpro.webp'>        
-    </ProjectCard>
-    <ProjectCard href='https://dolar-ggomez0.vercel.app' title='A cuanto esta?' 
-    descripcion='Pagina que recupera los datos de los diferentes tipos de cambio en Argentina y los muestra' image='/public/dolarpro.webp'>        
-    </ProjectCard>
-    <ProjectCard href='https://dolar-ggomez0.vercel.app' title='A cuanto esta?' 
-    descripcion='Pagina que recupera los datos de los diferentes tipos de cambio en Argentina y los muestra' image='/public/dolarpro.webp'>        
-    </ProjectCard>
-    <ProjectCard href='https://dolar-ggomez0.vercel.app' title='A cuanto esta?' 
-    descripcion='Pagina que recupera los datos de los diferentes tipos de cambio en Argentina y los muestra' image='/public/dolarpro.webp'>        
-    </ProjectCard>   
-    </div>
+      <!-- Loop para recuperar todos los proyectos y mostrarlos en la página de /projects con unos condicionantes -->
+    {datas.map((data: { id: any; name: string; description: any; }) => {
+        const showProjectCard = data.description && data.description.slice(-1) === '.';
+      
+        return showProjectCard ? (
+          <ProjectCard
+            href={`https://github.com/${username}/${data.name}`}
+            title={data.name}
+            descripcion={data.description || 'Sin descripción '}
+            image='/public/dolarpro.webp'
+          />
+        ) : null;
+      })}
+  </div>
 </Layout>
