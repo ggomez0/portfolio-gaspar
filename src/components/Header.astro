@@ -1,0 +1,16 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import HeaderLogo from './HeaderLogo.astro';
+---
+
+<header class="p-8">
+	<nav class="flex justify-between">		
+		<HeaderLogo/>
+		<div class="m-auto">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/projects">Projects</HeaderLink>
+			<HeaderLink href="/about">Contact me</HeaderLink>
+		</div>
+		
+	</nav>
+</header>
