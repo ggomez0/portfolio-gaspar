@@ -1,13 +1,48 @@
 ---
 import Layout from "../layouts/Layout.astro";
+// import { Resend } from 'resend';
+
+// const resend = new Resend(process.env.resend_API);
+
+// const handleSubmit = async (event) => {
+//   event.preventDefault();
+
+//   // Retrieve values from form fields
+//   const nombre = event.target.nombre.value;
+//   const asunto = event.target.asunto.value;
+//   const email = event.target.email.value;
+//   const mensaje = event.target.mensaje.value;
+
+//   const { data, error } = await resend.emails.send({
+//     from: 'Acme <onboarding@resend.dev>',
+//     to: ['gaspargomez2000@outlook.com'],
+//     subject: `Portfolio - ${asunto}`,
+//     html: `<p>${mensaje}</p><p>From: ${nombre} &lt;${email}&gt;</p>`,
+//   });
+
+//   if (error) {
+//     console.error({ error });
+//   } else {
+//     console.log({ data });
+//   }
+// };
+
 ---
 
 <Layout>
-    <h2>Contactame  </h2>
-    <input placeholder="nombre" class="">
-    <input placeholder="asunto" class="">
-    <input placeholder="email" class="">
-    <textarea placeholder="mensaje" class=""></textarea>
-    
-    <button type="submit" >Enviar</button>
+    <section class="flex flex-col gap-y-5">
+        <h2 class="text-center">Contáctame</h2>
+            <input id="nombre" name="nombre" placeholder="nombre">
+            <input id="asunto" name="asunto" placeholder="asunto">
+            <input id="email" name="email" placeholder="email" type="email">
+            <textarea id="mensaje" name="mensaje" placeholder="mensaje" class="h-[190px]"></textarea>
+            
+            <button type="submit" class="bg-green-500 hover:bg-green-400 text-white w-[90px] h-[50px] m-auto">Enviar</button>
+
+    </section>
 </Layout>
+<style>
+    input, textarea {
+        @apply p-3 rounded-md border border-slate-600 w-3/6 m-auto
+    }
+</style>
