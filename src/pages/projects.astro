@@ -2,26 +2,34 @@
 import ProjectCard from '../components/ProjectCard.astro';
 import Layout from '../layouts/Layout.astro';
 
+
 //API Github
 const username = "ggomez0"; // GitHub username
-const apiUrl = `https://api.github.com/users/${username}/repos`;
-const response = await fetch(apiUrl);
-const datas = await response.json();
+try{
+
+  const apiUrl = `https://api.github.com/users/${username}/repos`;
+  const response = await fetch(apiUrl);
+  const datas = await response.json();
+} //Funcionando supera limite de api, hacer scrap para obtenerlos
+catch
+{
+  console.log("Error al obtener los datos de GitHub");
+}
+
 ---
 <Layout>
     <div class="justify-center flex gap-4 flex-wrap">
       <!-- Loop para recuperar todos los proyectos y mostrarlos en la página de /projects con unos condicionantes -->
-    {datas.map((data: { id: any; name: string; description: any; }) => {
+    <!-- {datas.map((data: { id: any; name: string; description: any;}) => {
         const showProjectCard = data.description && data.description.slice(-1) === '.';
-      
-        return showProjectCard ? (
+        return showProjectCard? (
           <ProjectCard
-            href={`https://github.com/${username}/${data.name}`}
+            href={`https://github.com/ggomez0/${data.name}`}
             title={data.name}
             descripcion={data.description || 'Sin descripción '}
-            image='/public/dolarpro.webp'
+            image={`https://opengraph.githubassets.com/d379f7af2d1ce66ed22b3a77307419716998e7dba6bd54a1ac0bf6933a0bdf8e/ggomez0/${data.name}`}
           />
         ) : null;
-      })}
+      })} -->
   </div>
 </Layout>
