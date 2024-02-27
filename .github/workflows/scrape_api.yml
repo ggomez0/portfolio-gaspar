@@ -37,7 +37,7 @@ jobs:
 
     - name: Ejecutar tarea de scraping
       run: |
-        python scrapingjson.py
+        python scraping/scrapingjson.py
 
     - name: Subir json generado
       run: |
