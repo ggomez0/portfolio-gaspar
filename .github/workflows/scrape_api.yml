@@ -41,7 +41,7 @@ jobs:
 
     - name: Subir json generado
       run: |
-        git checkout main
+        git checkout master
         git add .
         git commit -m "JSON generado diario"
-        git push origin main
+        git push origin master
